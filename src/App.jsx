@@ -23,15 +23,22 @@ function App() {
   const [clicked, setClicked] = useState(false);
   const [copied, setCopied] = useState(false);
   const [display, setDisplay] = useState("none");
-  const [linkDisplay, setLinkDisplay] = useState("flex");
+  const [linkDisplay, setLinkDisplay] = useState("none");
 
   window.addEventListener("resize", () => {
     if (window.innerWidth <= 500) {
       return setLinkDisplay("none");
     } else if (window.innerWidth > 500) {
-      setLinkDisplay("flex");
+      return setLinkDisplay("flex");
     }
   });
+  useEffect(() => {
+    if (window.innerWidth <= 500) {
+      setLinkDisplay("none");
+    } else {
+      setLinkDisplay("flex");
+    }
+  }, []);
   useEffect(() => {
     if (linkUrl !== "") {
       setError("");
@@ -66,7 +73,16 @@ function App() {
           if (data.ok === true) {
             SetCookie(linkUrl, data.result.short_link, 365);
             setClicked(!clicked);
-            setDisplay("none");
+          }
+        })
+        .finally(() => {
+          setDisplay("none");
+          if (
+            document.cookie
+              .split("; ")
+              [document.cookie.split("; ").length - 1].split("=")[0] !== linkUrl
+          ) {
+            setError("Invalid Url");
           }
         });
     }
