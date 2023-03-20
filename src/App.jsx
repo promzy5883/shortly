@@ -137,7 +137,7 @@ function App() {
           </button>
         </nav>
         <section className="more">
-          <div className="paragraph">
+          <div className="paragraph" id="shorten">
             <p className="more-text">
               More than just <br />
               shorter links
@@ -157,7 +157,7 @@ function App() {
       </section>
 
       <section className="second-half">
-        <div className="shorten" id="shorten">
+        <div className="shorten">
           <input
             style={{
               border: `${border}`,

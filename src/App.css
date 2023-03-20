@@ -765,7 +765,6 @@ footer {
   }
   .second-half {
     padding-left: 20px;
-    height: auto;
   }
   .shorten-input {
     box-sizing: border-box;
@@ -859,7 +858,7 @@ footer {
   .stats_box {
     padding-top: 20px;
     width: calc(100% - 20px);
-    height: 700px;
+    height: 750px;
     display: flex;
     flex-direction: column;
     gap: 50px;
