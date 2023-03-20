@@ -65,6 +65,12 @@ function App() {
       setOutlet("1px");
       setColor("hsl(0, 87%, 67%)");
       return;
+    } else if (linkUrl.indexOf("https://") === -1) {
+      setBorder("1px solid hsl(0, 87%, 67%)");
+      setOutlet("1px");
+      setColor("hsl(0, 87%, 67%)");
+      setError("Enter a valid URL");
+      return;
     } else {
       setDisplay("block");
       return fetch(`https://api.shrtco.de/v2/shorten?url=${linkUrl}`)
