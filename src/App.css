@@ -120,6 +120,7 @@
   padding-bottom: 20px;
 }
 .get-started {
+  text-decoration: none;
   background-color: hsl(180, 66%, 49%);
   height: 35px;
   line-height: 35px;
@@ -764,6 +765,7 @@ footer {
   }
   .second-half {
     padding-left: 20px;
+    height: auto;
   }
   .shorten-input {
     box-sizing: border-box;

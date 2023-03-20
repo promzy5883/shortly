@@ -157,7 +157,7 @@ function App() {
       </section>
 
       <section className="second-half">
-        <div className="shorten">
+        <div className="shorten" id="shorten">
           <input
             style={{
               border: `${border}`,
@@ -267,7 +267,9 @@ function App() {
       </section>
       <section className="third-section">
         <p className="boost">Boost your links today</p>
-        <button className="get-started">Get Started</button>
+        <a href="#shorten" className="get-started">
+          Get Started
+        </a>
       </section>
       <footer>
         <div className="footer-logo">
