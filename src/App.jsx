@@ -23,20 +23,20 @@ function App() {
   const [clicked, setClicked] = useState(false);
   const [copied, setCopied] = useState(false);
   const [display, setDisplay] = useState("none");
-  const [linkDisplay, setLinkDisplay] = useState("none");
+  const [menuTransform, setMenuTransform] = useState("-130%");
 
   window.addEventListener("resize", () => {
     if (window.innerWidth <= 500) {
-      return setLinkDisplay("none");
+      setMenuTransform("-130%");
     } else if (window.innerWidth > 500) {
-      return setLinkDisplay("flex");
+      setMenuTransform("0px");
     }
   });
   useEffect(() => {
     if (window.innerWidth <= 500) {
-      setLinkDisplay("none");
+      setMenuTransform("-130%");
     } else {
-      setLinkDisplay("flex");
+      setMenuTransform("0px");
     }
   }, []);
   useEffect(() => {
@@ -102,9 +102,7 @@ function App() {
             <p className="logo">Shortly</p>
             <ul
               className="nav-ul"
-              style={{
-                display: `${linkDisplay}`,
-              }}
+              style={{ transform: `translateY(${menuTransform})` }}
             >
               <div className="nav-ul-links">
                 <li>
@@ -128,10 +126,10 @@ function App() {
           <button
             className="menu-button"
             onClick={() => {
-              if (linkDisplay === "none") {
-                setLinkDisplay("flex");
+              if (menuTransform === "0px") {
+                setMenuTransform("-130%");
               } else {
-                setLinkDisplay("none");
+                setMenuTransform("0px");
               }
             }}
           >

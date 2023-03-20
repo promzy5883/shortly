@@ -36,6 +36,7 @@
   cursor: pointer;
 }
 .nav-ul {
+  display: flex;
   justify-content: space-between;
   padding-top: 12px;
 }
@@ -694,6 +695,7 @@ footer {
     padding-left: 20px;
     padding-right: 20px;
     align-items: normal;
+    transition: all 0.5s;
   }
 
   .security {
