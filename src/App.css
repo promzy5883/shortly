@@ -398,6 +398,9 @@ footer {
   gap: 15px;
   justify-content: end;
 }
+.social-icons i {
+  cursor: pointer;
+}
 .facebook_icon {
   background-color: hsl(255, 100%, 99%);
   width: 16px;

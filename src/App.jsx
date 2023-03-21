@@ -100,7 +100,7 @@ function App() {
         <section className="first-half">
           <nav className="nav">
             <div className="links">
-              <p className="logo">Shortly</p>
+              <h1 className="logo">Shortly</h1>
               <div
                 className="nav-ul"
                 style={{ transform: `translateY(${menuTransform})` }}
@@ -325,18 +325,15 @@ function App() {
               </ul>
             </div>
             <div className="social-icons">
-              <a href="#">
-                <i className="fa-brands fa-facebook-f facebook_icon"></i>
-              </a>
-              <a href="https://twitter.com/Promzy_5" target="blank">
-                <i className="fa-brands fa-twitter twitter_icon"></i>
-              </a>
-              <a href="#">
-                <i className="fa-brands fa-pinterest-p pinterest_icon"></i>
-              </a>
-              <a href="#">
-                <i className="fa-brands fa-instagram twitter_icon"></i>
-              </a>
+              <i className="fa-brands fa-facebook-f facebook_icon"></i>
+              <i
+                className="fa-brands fa-twitter twitter_icon"
+                onClick={() => window.open("https://twitter.com/Promzy_5")}
+              ></i>
+
+              <i className="fa-brands fa-pinterest-p pinterest_icon"></i>
+
+              <i className="fa-brands fa-instagram twitter_icon"></i>
             </div>
           </div>
         </div>
