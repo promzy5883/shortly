@@ -101,11 +101,11 @@ function App() {
           <nav className="nav">
             <div className="links">
               <p className="logo">Shortly</p>
-              <ul
+              <div
                 className="nav-ul"
                 style={{ transform: `translateY(${menuTransform})` }}
               >
-                <div className="nav-ul-links">
+                <ul className="nav-ul-links">
                   <li>
                     <a href="#">Features</a>
                   </li>
@@ -115,13 +115,13 @@ function App() {
                   <li className="division">
                     <a href="#">Resources</a>
                   </li>
-                </div>
+                </ul>
 
                 <div className="security">
                   <a href="#">Login</a>
                   <a href="#">Sign Up</a>
                 </div>
-              </ul>
+              </div>
             </div>
 
             <button
