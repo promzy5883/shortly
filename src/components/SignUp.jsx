@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { v4 as uuidV4 } from "uuid";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +12,10 @@ export default function SignUp() {
     email: "",
     password: "",
   });
+  const [nameBorder, setNameBorder] = useState("1px solid transparent");
+  const [emailBorder, setEmailBorder] = useState("1px solid transparent");
+  const [passwordBorder, setPasswordBorder] = useState("1px solid transparent");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const createUser = async (e) => {
     e.preventDefault();
@@ -28,9 +32,31 @@ export default function SignUp() {
         console.log(response);
         navigate("/dashboard");
       },
-      (err) => console.log(err)
+      (err) => {
+        console.log(err);
+        if (user.name === "" || user.email === "" || user.password === "") {
+          user.email === "" && setEmailBorder("1px solid red");
+          user.password === "" && setPasswordBorder("1px solid red");
+          user.name === "" && setNameBorder("1px solid red");
+          setErrorMessage("Please fill all fields");
+        } else {
+          setErrorMessage(err.message);
+        }
+      }
     );
   };
+
+  useEffect(() => {
+    setEmailBorder("1px solid transparent");
+  }, [user.email]);
+
+  useEffect(() => {
+    setNameBorder("1px solid transparent");
+  }, [user.name]);
+
+  useEffect(() => {
+    setPasswordBorder("1px solid transparent");
+  }, [user.password]);
 
   return (
     <main className="m-0 p-0 w-full bg-[hsl(255,100%,99%)] h-screen flex justify-center items-center max-[700px]:items-start max-[700px]:pt-6">
@@ -61,6 +87,7 @@ export default function SignUp() {
             <input
               type="text"
               name="name"
+              placeholder="Promise Onuoha"
               value={user.name}
               onChange={(e) =>
                 setUser((p) => {
@@ -70,6 +97,7 @@ export default function SignUp() {
               style={{
                 fontFamily: "'EB Garamond', serif",
                 fontFamily: "'Outfit', sans-serif",
+                border: nameBorder,
               }}
               className="w-full py-2 px-4 bg-[rgba(0,0,0,0.1)] outline-none mt-2 rounded-sm text-sm"
               required
@@ -80,6 +108,7 @@ export default function SignUp() {
             <br />
             <input
               type="email"
+              placeholder="example@gmail.com"
               name="email"
               value={user.email}
               onChange={(e) =>
@@ -90,6 +119,7 @@ export default function SignUp() {
               style={{
                 fontFamily: "'EB Garamond', serif",
                 fontFamily: "'Outfit', sans-serif",
+                border: emailBorder,
               }}
               className="w-full text-sm py-2 px-4 bg-[rgba(0,0,0,0.1)] outline-none mt-2 rounded-sm"
               required
@@ -99,6 +129,7 @@ export default function SignUp() {
             <Label element={"password"} placeHolder={"Create a password"} />
             <br />
             <input
+              placeholder="******"
               type="password"
               name="password"
               value={user.password}
@@ -110,10 +141,16 @@ export default function SignUp() {
               style={{
                 fontFamily: "'EB Garamond', serif",
                 fontFamily: "'Outfit', sans-serif",
+                border: passwordBorder,
               }}
               className="w-full py-2 px-4 text-sm bg-[rgba(0,0,0,0.1)] outline-none mt-2 rounded-sm"
               required
             />
+            {errorMessage !== "" && (
+              <p style={{ color: "red" }} className="pt-2 text-xs font-bold">
+                {errorMessage}
+              </p>
+            )}
           </div>
           <div>
             <button

@@ -10,8 +10,9 @@ export default function Login() {
     email: "",
     password: "",
   });
-  const [emailBorder, setEmailBorder] = useState("none");
-  const [passwordBorder, setPasswordBorder] = useState("none");
+  const [emailBorder, setEmailBorder] = useState("1px solid transparent");
+  const [passwordBorder, setPasswordBorder] = useState("1px solid transparent");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const loginUser = async (e) => {
     e.preventDefault();
@@ -21,17 +22,22 @@ export default function Login() {
       navigate("/dashboard");
     } catch (err) {
       console.log(err);
-      setEmailBorder("1px solid red");
-      setPasswordBorder("1px solid red");
+      if (user.email === "" || user.password === "") {
+        user.email === "" && setEmailBorder("1px solid red");
+        user.password === "" && setPasswordBorder("1px solid red");
+        setErrorMessage("Please fill all fields");
+      } else {
+        setErrorMessage(err.message);
+      }
     }
   };
 
   useEffect(() => {
-    setEmailBorder("none");
+    setEmailBorder("1px solid transparent");
   }, [user.email]);
 
   useEffect(() => {
-    setPasswordBorder("none");
+    setPasswordBorder("1px solid transparent");
   }, [user.password]);
 
   return (
@@ -63,6 +69,7 @@ export default function Login() {
             <input
               type="email"
               name="email"
+              placeholder="Enter your email"
               value={user.email}
               onChange={(e) =>
                 setUser((p) => {
@@ -84,6 +91,7 @@ export default function Login() {
             <input
               type="password"
               name="password"
+              placeholder="******"
               value={user.password}
               onChange={(e) =>
                 setUser((p) => {
@@ -98,6 +106,11 @@ export default function Login() {
               className="w-full py-2 px-4 text-sm bg-[rgba(0,0,0,0.1)] outline-none mt-2 rounded-sm"
               required
             />
+            {errorMessage !== "" && (
+              <p style={{ color: "red" }} className="pt-2 text-xs font-bold">
+                {errorMessage}
+              </p>
+            )}
           </div>
           <div>
             <button
