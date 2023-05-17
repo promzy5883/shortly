@@ -1,146 +1,31 @@
 import "./App.css";
-import { useState, useEffect } from "react";
-import CopyToClipboard from "react-copy-to-clipboard";
-import SetCookie from "./components/cookies";
-import NavSection from "./components/navSection";
+import NavBar from "./components/navSection";
+import Button from "./components/button";
 
 function App() {
-  const [linkUrl, setLinkUrl] = useState("");
-  const [error, setError] = useState("");
-  const [border, setBorder] = useState("none");
-  const [outlet, setOutlet] = useState("none");
-  const [color, setColor] = useState("hsla(257, 27%, 26%, 0.6)");
-  const [data, setData] = useState([]);
-  const [clicked, setClicked] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const [display, setDisplay] = useState("none");
-
-  useEffect(() => {
-    if (linkUrl !== "") {
-      setError("");
-      setBorder("none");
-      setOutlet("none");
-      setColor("hsla(257, 27%, 26%, 0.6)");
-    }
-  }, [linkUrl]);
-  useEffect(() => {
-    setData(() => [document.cookie]);
-  }, [clicked]);
-
-  useEffect(() => {
-    if (copied === true) {
-      alert("Copied!");
-      setCopied(false);
-    }
-  }, [copied]);
-
-  function check() {
-    if (linkUrl === "") {
-      setError("Please add a link");
-      setBorder("1px solid hsl(0, 87%, 67%)");
-      setOutlet("1px");
-      setColor("hsl(0, 87%, 67%)");
-      return;
-    } else if (linkUrl.indexOf("https://") === -1) {
-      setBorder("1px solid hsl(0, 87%, 67%)");
-      setOutlet("1px");
-      setColor("hsl(0, 87%, 67%)");
-      setError("Enter a valid URL");
-      return;
-    } else {
-      setDisplay("block");
-      return fetch(`https://api.shrtco.de/v2/shorten?url=${linkUrl}`)
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.ok === true) {
-            SetCookie(linkUrl, data.result.short_link, 365);
-            setClicked(!clicked);
-            console.log(data);
-          }
-        })
-        .finally(() => {
-          setDisplay("none");
-          if (
-            document.cookie
-              .split("; ")
-              [document.cookie.split("; ").length - 1].split("=")[0] !== linkUrl
-          ) {
-            setError("Invalid Url");
-          }
-        });
-    }
-  }
-
   return (
     <>
       <main className="App">
-        <NavSection />
+        <section className="first-half">
+          <NavBar />
+          <section className="more">
+            <div className="paragraph" id="shorten">
+              <p className="more-text">
+                More than just <br />
+                shorter links
+              </p>
+              <p className="sub-paragraph">
+                Build your brand's recognition and get detailed insight <br />{" "}
+                on how your links are performing
+              </p>
+              <button className="get-started">Get Started</button>
+            </div>
+            <div className="img-box">
+              <img src="/images/illustration-working.svg" alt="" />
+            </div>
+          </section>
+        </section>
         <section className="second-half">
-          <div className="shorten">
-            <input
-              style={{
-                border: `${border}`,
-                outline: `${outlet}`,
-                color: `${color}`,
-              }}
-              placeholder="Shorten a link here..."
-              type="text"
-              className="shorten-input"
-              value={linkUrl}
-              onChange={(e) => setLinkUrl(e.target.value)}
-            />
-            <button className="submit" onClick={check}>
-              Shorten It!
-              <img
-                className="spinner"
-                src="https://raw.githubusercontent.com/Codelessly/FlutterLoadingGIFs/master/packages/cupertino_activity_indicator_selective.gif"
-                alt=""
-                style={{ display: `${display}` }}
-              />
-            </button>
-            <p
-              className="error"
-              style={{
-                position: "absolute",
-                top: "105px",
-                color: "hsl(0, 87%, 67%)",
-                fontStyle: "italic",
-              }}
-            >
-              {error}
-            </p>
-          </div>
-          <div className="second-half-link-box">
-            {document.cookie !== "" &&
-              decodeURIComponent(data[0])
-                .split("; ")
-                .reverse()
-                .map((v) => {
-                  return (
-                    <div
-                      key={decodeURIComponent(data[0]).split("; ").indexOf(v)}
-                      className="your-links"
-                    >
-                      <p className="original-link">{v.split("=")[0]}</p>
-                      <div className="copy-link">
-                        <a
-                          className="short-link"
-                          href={`https://${v.split("=")[1]}`}
-                          target="_blank"
-                        >
-                          {`https://${v.split("=")[1]}`}
-                        </a>
-                        <CopyToClipboard
-                          text={`https://${v.split("=")[1]}`}
-                          onCopy={() => setCopied(true)}
-                        >
-                          <button className="copy-btn">Copy</button>
-                        </CopyToClipboard>
-                      </div>
-                    </div>
-                  );
-                })}
-          </div>
           <div className="advanced_stats">
             <p className="stats_heading">Advanced Statistics</p>
             <p className="stats-paragraph">
@@ -186,9 +71,7 @@ function App() {
         </section>
         <section className="third-section">
           <p className="boost">Boost your links today</p>
-          <a href="#shorten" className="get-started">
-            Get Started
-          </a>
+          <Button children={"Get Started"} />
         </section>
       </main>
       <footer>
@@ -254,13 +137,6 @@ function App() {
               <i className="fa-brands fa-instagram twitter_icon"></i>
             </div>
           </div>
-        </div>
-        <div class="attribution">
-          Challenge by{" "}
-          <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">
-            Frontend Mentor
-          </a>
-          . Coded by <a href="https://promzy.netlify.app">Promise</a>.
         </div>
       </footer>
     </>

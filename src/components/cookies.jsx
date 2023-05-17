@@ -5,7 +5,7 @@ function SetCookie(name, value, expiryDate) {
   document.cookie = `${name}=${value}; ${expires}; path=/`;
 }
 
-function DeleteCookie(name) {
+export function DeleteCookie(name) {
   document.cookie = `${name}=; expires=Wed, 15 Mar 2023 14:20:03 GMT; path=/`;
 }
 

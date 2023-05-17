@@ -8,7 +8,7 @@
 }
 .first-half {
   width: 100%;
-  height: 650px;
+  height: 600px;
   background-color: hsl(255, 100%, 99%);
   box-sizing: border-box;
   padding-left: 150px;
@@ -149,9 +149,10 @@
   width: 100%;
   background-color: hsl(0, 0%, 90%);
   box-sizing: border-box;
-
   padding-left: 150px;
   z-index: -2;
+  padding-top: 40px;
+  padding-bottom: 10px;
 }
 .second-half-link-box {
   display: flex;
@@ -215,6 +216,7 @@
   border-radius: 6px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .original-link {
   width: 75%;
@@ -231,6 +233,7 @@
   color: hsl(180, 66%, 49%);
   font-family: "EB Garamond", serif;
   font-family: "Outfit", sans-serif;
+  align-self: center;
 }
 .copy-btn {
   padding: 5px 10px 5px 10px;
@@ -680,7 +683,7 @@ footer {
   }
   .first-half {
     padding-left: 20px;
-    height: 800px;
+    height: 750px;
   }
   .menu-button {
     display: block;
@@ -793,6 +796,7 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: stretch;
   }
   .original-link {
     width: 100%;
@@ -857,7 +861,7 @@ footer {
     background-color: hsl(180, 66%, 49%);
     z-index: 0;
     position: absolute;
-    left: calc(50% - 10px);
+    left: calc(50% - 25px);
   }
   .stats_box {
     padding-top: 20px;
@@ -874,7 +878,6 @@ footer {
   .main-footer {
     width: 100%;
     box-sizing: border-box;
-
     padding-bottom: 50px;
     padding-left: 20px;
     padding-right: 20px;
