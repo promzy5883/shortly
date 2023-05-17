@@ -33,7 +33,7 @@ export default function SignUp() {
   };
 
   return (
-    <main className="m-0 p-0 w-full h-screen flex justify-center items-center max-[700px]:items-start max-[700px]:pt-6">
+    <main className="m-0 p-0 w-full bg-[hsl(255,100%,99%)] h-screen flex justify-center items-center max-[700px]:items-start max-[700px]:pt-6">
       <div className="w-[1100px] h-auto flex justify-between max-[700px]:w-[90%] max-[700px]:flex-col max-[700px]:justify-start max-[700px]:items-center max-[700px]:gap-9">
         <img
           src="/images/illustration-working.svg"
