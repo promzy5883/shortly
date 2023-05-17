@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "./button";
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
   let [menuButtonFirstTransform, setmenuButtonFirstTransform] = useState(
@@ -18,19 +18,19 @@ export default function NavBar() {
         <div className="nav-ul" style={{ top: `${navLinksPosition}` }}>
           <ul className="nav-ul-links">
             <li>
-              <a href="#">Features</a>
+              <Link>Features</Link>
             </li>
             <li>
-              <a href="#">Pricing</a>
+              <Link>Pricing</Link>
             </li>
             <li className="division">
-              <a href="#">Resources</a>
+              <Link>Resources</Link>
             </li>
           </ul>
 
           <div className="security">
-            <a href="#">Login</a>
-            <a href="#">Sign Up</a>
+            <Link>Login</Link>
+            <Link to={"/signup"}>Sign Up</Link>
           </div>
         </div>
       </div>

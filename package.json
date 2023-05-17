@@ -9,10 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "appwrite": "^11.0.0",
     "axios": "^1.3.4",
     "react": "^18.2.0",
     "react-copy-to-clipboard": "^5.1.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.11.1",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

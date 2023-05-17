@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
+
 export default function Button({ children }) {
   return (
-    <a href="" className="get-started">
+    <Link to={"/signup"} className="get-started">
       {children}
-    </a>
+    </Link>
   );
 }
