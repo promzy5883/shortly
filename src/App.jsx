@@ -1,17 +1,8 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
-
-function SetCookie(name, value, expiryDate) {
-  var d = new Date();
-  d.setTime(d.getTime() + expiryDate * 24 * 60 * 60 * 1000);
-  var expires = "expires" + d.toUTCString();
-  document.cookie = `${name}=${value}; ${expires}; path=/`;
-}
-
-function DeleteCookie(name) {
-  document.cookie = `${name}=; expires=Wed, 15 Mar 2023 14:20:03 GMT; path=/`;
-}
+import SetCookie from "./components/cookies";
+import NavSection from "./components/navSection";
 
 function App() {
   const [linkUrl, setLinkUrl] = useState("");
@@ -23,22 +14,7 @@ function App() {
   const [clicked, setClicked] = useState(false);
   const [copied, setCopied] = useState(false);
   const [display, setDisplay] = useState("none");
-  const [menuTransform, setMenuTransform] = useState("-130%");
 
-  window.addEventListener("resize", () => {
-    if (window.innerWidth <= 500) {
-      setMenuTransform("-130%");
-    } else if (window.innerWidth > 500) {
-      setMenuTransform("0px");
-    }
-  });
-  useEffect(() => {
-    if (window.innerWidth <= 500) {
-      setMenuTransform("-130%");
-    } else {
-      setMenuTransform("0px");
-    }
-  }, []);
   useEffect(() => {
     if (linkUrl !== "") {
       setError("");
@@ -79,6 +55,7 @@ function App() {
           if (data.ok === true) {
             SetCookie(linkUrl, data.result.short_link, 365);
             setClicked(!clicked);
+            console.log(data);
           }
         })
         .finally(() => {
@@ -97,66 +74,7 @@ function App() {
   return (
     <>
       <main className="App">
-        <section className="first-half">
-          <nav className="nav">
-            <div className="links">
-              <h1 className="logo">Shortly</h1>
-              <div
-                className="nav-ul"
-                style={{ transform: `translateY(${menuTransform})` }}
-              >
-                <ul className="nav-ul-links">
-                  <li>
-                    <a href="#">Features</a>
-                  </li>
-                  <li>
-                    <a href="#">Pricing</a>
-                  </li>
-                  <li className="division">
-                    <a href="#">Resources</a>
-                  </li>
-                </ul>
-
-                <div className="security">
-                  <a href="#">Login</a>
-                  <a href="#">Sign Up</a>
-                </div>
-              </div>
-            </div>
-
-            <button
-              className="menu-button"
-              onClick={() => {
-                if (menuTransform === "0px") {
-                  setMenuTransform("-130%");
-                } else {
-                  setMenuTransform("0px");
-                }
-              }}
-            >
-              <i className="fa-solid fa-bars menu"></i>
-            </button>
-          </nav>
-          <section className="more">
-            <div className="paragraph" id="shorten">
-              <p className="more-text">
-                More than just <br />
-                shorter links
-              </p>
-              <p className="sub-paragraph">
-                Build your brand's recognition and get detailed insight <br />{" "}
-                on how your links are performing
-              </p>
-              <button className="get-started" id="get-started">
-                Get Started
-              </button>
-            </div>
-            <div className="img-box">
-              <img src="/images/illustration-working.svg" alt="" />
-            </div>
-          </section>
-        </section>
-
+        <NavSection />
         <section className="second-half">
           <div className="shorten">
             <input
