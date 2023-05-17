@@ -683,7 +683,7 @@ footer {
   }
   .first-half {
     padding-left: 20px;
-    height: 750px;
+    height: 770px;
   }
   .menu-button {
     display: block;
@@ -839,8 +839,7 @@ footer {
     padding: 12px;
     width: 42px;
     border-radius: 50%;
-    transform: translateY(-30px);
-    margin-left: calc(50% - 42px);
+    transform: translateY(-30px) translateX(35%);
   }
   .boxes1-imgBox img,
   .boxes2-imgBox img,
@@ -861,7 +860,7 @@ footer {
     background-color: hsl(180, 66%, 49%);
     z-index: 0;
     position: absolute;
-    left: calc(50% - 25px);
+    left: calc(50% - 10px);
   }
   .stats_box {
     padding-top: 20px;
@@ -927,5 +926,8 @@ footer {
     font-size: 14px;
     font-weight: 500;
     transition: 0.5s;
+  }
+  .footer-logo-text {
+    text-align: center;
   }
 }
