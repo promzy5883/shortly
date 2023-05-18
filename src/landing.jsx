@@ -1,7 +1,8 @@
 import "./App.css";
 import { useNavigate } from "react-router-dom";
-import NavBar from "./components/navSection";
+import NavBar from "./components/navBar";
 import Button from "./components/button";
+import Footer from "./components/Footer";
 export default function Landing() {
   const navigate = useNavigate();
 
@@ -81,71 +82,7 @@ export default function Landing() {
           <Button children={"Get Started"} />
         </section>
       </main>
-      <footer>
-        <div className="main-footer">
-          <div className="footer-logo">
-            <p className="footer-logo-text">Shortly</p>
-          </div>
-          <div className="footer-links">
-            <div className="features">
-              <p>Features</p>
-              <ul>
-                <li>
-                  <a href="#">Link Shortening</a>
-                </li>
-                <li>
-                  <a href="#">Branded Links</a>
-                </li>
-                <li>
-                  <a href="#">Analytics</a>
-                </li>
-              </ul>
-            </div>
-            <div className="resources">
-              <p>Resources</p>
-              <ul>
-                <li>
-                  <a href="#">Blog</a>
-                </li>
-                <li>
-                  <a href="#">Developers</a>
-                </li>
-                <li>
-                  <a href="#">Support</a>
-                </li>
-              </ul>
-            </div>
-            <div className="company">
-              <p>Company</p>
-              <ul>
-                <li>
-                  <a href="#">About</a>
-                </li>
-                <li>
-                  <a href="#">Our Team</a>
-                </li>
-                <li>
-                  <a href="#">Careers</a>
-                </li>
-                <li>
-                  <a href="#">Contact</a>
-                </li>
-              </ul>
-            </div>
-            <div className="social-icons">
-              <i className="fa-brands fa-facebook-f facebook_icon"></i>
-              <i
-                className="fa-brands fa-twitter twitter_icon"
-                onClick={() => window.open("https://twitter.com/Promzy_5")}
-              ></i>
-
-              <i className="fa-brands fa-pinterest-p pinterest_icon"></i>
-
-              <i className="fa-brands fa-instagram twitter_icon"></i>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }

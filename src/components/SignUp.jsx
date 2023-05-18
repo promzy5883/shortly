@@ -29,15 +29,19 @@ export default function SignUp() {
 
     promise.then(
       (response) => {
-        console.log(response);
-        navigate("/dashboard");
+        navigate("/login");
       },
       (err) => {
         if (user.name === "" || user.email === "" || user.password === "") {
           user.email === "" && setEmailBorder("1px solid red");
           user.password === "" && setPasswordBorder("1px solid red");
           user.name === "" && setNameBorder("1px solid red");
-          setErrorMessage("Please fill all fields");
+          setErrorMessage("Field cannot be blank");
+        } else if (
+          err.message ===
+          "A user with the same email already exists in your project."
+        ) {
+          setErrorMessage("A user with the same email already exists.");
         } else {
           setErrorMessage(err.message);
         }

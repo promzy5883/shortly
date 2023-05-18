@@ -19,13 +19,13 @@ export default function Login() {
 
     try {
       await account.createEmailSession(user.email, user.password);
-      navigate("/dashboard");
+      navigate("/profile");
     } catch (err) {
       console.log(err);
       if (user.email === "" || user.password === "") {
         user.email === "" && setEmailBorder("1px solid red");
         user.password === "" && setPasswordBorder("1px solid red");
-        setErrorMessage("Please fill all fields");
+        setErrorMessage("Field cannot be blank");
       } else {
         setErrorMessage(err.message);
       }
