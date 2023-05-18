@@ -33,7 +33,6 @@ export default function SignUp() {
         navigate("/dashboard");
       },
       (err) => {
-        console.log(err);
         if (user.name === "" || user.email === "" || user.password === "") {
           user.email === "" && setEmailBorder("1px solid red");
           user.password === "" && setPasswordBorder("1px solid red");

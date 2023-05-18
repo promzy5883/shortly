@@ -755,6 +755,10 @@ footer {
   .sub-paragraph {
     text-align: center;
   }
+  .more-text {
+    font-size: 45px;
+    line-height: 52px;
+  }
   .shorten {
     transform: translateY(-75px);
     width: calc(100% - 20px);
