@@ -151,8 +151,8 @@
   box-sizing: border-box;
   padding-left: 150px;
   z-index: -2;
-  padding-top: 40px;
-  padding-bottom: 10px;
+  padding-top: 50px;
+  padding-bottom: 25px;
 }
 .second-half-link-box {
   display: flex;
@@ -684,7 +684,7 @@ footer {
   }
   .first-half {
     padding-left: 0px;
-    height: 770px;
+    height: 740px;
   }
   .menu-button {
     display: block;
