@@ -938,3 +938,8 @@ footer {
     text-align: center;
   }
 }
+@media (max-width: 400px) {
+  .paragraph {
+    transform: translateY(240px);
+  }
+}
