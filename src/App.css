@@ -162,10 +162,8 @@
   transform: translateY(-50px);
 }
 .shorten {
-  transform: translateY(-75px);
   width: calc(100% - 150px);
   height: 150px;
-
   border-radius: 8px;
   background-image: url(/images/bg-shorten-desktop.svg);
   background-color: hsl(257, 27%, 26%);
@@ -173,6 +171,7 @@
   padding: 50px;
   display: flex;
   gap: 3%;
+  position: relative;
 }
 .shorten-input {
   box-sizing: border-box;

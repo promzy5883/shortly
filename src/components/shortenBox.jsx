@@ -1,7 +1,6 @@
 import SetCookie from "./cookies";
 import { useState, useEffect } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
-import { DeleteCookie } from "./cookies";
 
 export default function ShortenBox() {
   const [border, setBorder] = useState("none");
@@ -10,7 +9,6 @@ export default function ShortenBox() {
   const [linkUrl, setLinkUrl] = useState("");
   const [display, setDisplay] = useState("none");
   const [error, setError] = useState("");
-  const [data, setData] = useState([]);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -28,10 +26,6 @@ export default function ShortenBox() {
       setColor("hsla(257, 27%, 26%, 0.6)");
     }
   }, [linkUrl]);
-
-  useEffect(() => {
-    document.cookie !== "" ? setData([document.cookie]) : setData([]);
-  }, []);
 
   function check() {
     if (linkUrl === "") {
@@ -106,8 +100,13 @@ export default function ShortenBox() {
           {error}
         </p>
       </div>
-      <div className="second-half-link-box">
-        {document.cookie !== "" &&
+      <div className="second-half-link-box"></div>
+    </>
+  );
+}
+
+{
+  /*document.cookie !== "" &&
           decodeURIComponent(data[0])
             .split("; ")
             .reverse()
@@ -135,8 +134,5 @@ export default function ShortenBox() {
                   </div>
                 </div>
               );
-            })}
-      </div>
-    </>
-  );
+            })*/
 }

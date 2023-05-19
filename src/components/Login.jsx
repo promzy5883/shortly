@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { account } from "../appwrite/appwriteConfig";
 import Label from "./labels";
 import { Link } from "react-router-dom";
+import Loading from "./loadingComponent";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -13,14 +14,19 @@ export default function Login() {
   const [emailBorder, setEmailBorder] = useState("1px solid transparent");
   const [passwordBorder, setPasswordBorder] = useState("1px solid transparent");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const loginUser = async (e) => {
     e.preventDefault();
-
+    setIsLoading(true);
     try {
       await account.createEmailSession(user.email, user.password);
-      navigate("/profile");
+      setTimeout(() => {
+        navigate("/profile");
+        setIsLoading(false);
+      }, 4000);
     } catch (err) {
+      setIsLoading(false);
       console.log(err);
       if (user.email === "" || user.password === "") {
         user.email === "" && setEmailBorder("1px solid red");
@@ -42,6 +48,7 @@ export default function Login() {
 
   return (
     <main className="m-0 p-0 w-full bg-[hsl(255,100%,99%)] h-screen flex justify-center items-center max-[700px]:items-start max-[700px]:pt-6">
+      {isLoading && <Loading />}
       <div className="w-[1100px] h-auto flex justify-between max-[700px]:w-[90%] max-[700px]:flex-col max-[700px]:justify-start max-[700px]:items-center max-[700px]:gap-9">
         <img
           src="/images/illustration-working.svg"

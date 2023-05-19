@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { v4 as uuidV4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 import { account } from "../appwrite/appwriteConfig";
+import Loading from "./loadingComponent";
 import Label from "./labels";
 
 export default function SignUp() {
@@ -16,9 +17,11 @@ export default function SignUp() {
   const [emailBorder, setEmailBorder] = useState("1px solid transparent");
   const [passwordBorder, setPasswordBorder] = useState("1px solid transparent");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const createUser = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const promise = account.create(
       uuidV4(),
@@ -29,22 +32,28 @@ export default function SignUp() {
 
     promise.then(
       (response) => {
-        navigate("/login");
+        setTimeout(() => {
+          navigate("/login");
+          setIsLoading(false);
+        }, 2000);
       },
       (err) => {
-        if (user.name === "" || user.email === "" || user.password === "") {
-          user.email === "" && setEmailBorder("1px solid red");
-          user.password === "" && setPasswordBorder("1px solid red");
-          user.name === "" && setNameBorder("1px solid red");
-          setErrorMessage("Field cannot be blank");
-        } else if (
-          err.message ===
-          "A user with the same email already exists in your project."
-        ) {
-          setErrorMessage("A user with the same email already exists.");
-        } else {
-          setErrorMessage(err.message);
-        }
+        setTimeout(() => {
+          setIsLoading(false);
+          if (user.name === "" || user.email === "" || user.password === "") {
+            user.email === "" && setEmailBorder("1px solid red");
+            user.password === "" && setPasswordBorder("1px solid red");
+            user.name === "" && setNameBorder("1px solid red");
+            setErrorMessage("Field cannot be blank");
+          } else if (
+            err.message ===
+            "A user with the same email already exists in your project."
+          ) {
+            setErrorMessage("A user with the same email already exists.");
+          } else {
+            setErrorMessage(err.message);
+          }
+        }, 2000);
       }
     );
   };
@@ -63,6 +72,7 @@ export default function SignUp() {
 
   return (
     <main className="m-0 p-0 w-full bg-[hsl(255,100%,99%)] h-screen flex justify-center items-center max-[700px]:items-start max-[700px]:pt-6">
+      {isLoading && <Loading />}
       <div className="w-[1100px] h-auto flex justify-between max-[700px]:w-[90%] max-[700px]:flex-col max-[700px]:justify-start max-[700px]:items-center max-[700px]:gap-9">
         <img
           src="/images/illustration-working.svg"
