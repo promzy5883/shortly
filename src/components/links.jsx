@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { databases } from "../appwrite/appwriteConfig";
 import { v4 as uuidV4 } from "uuid";
-import CopyToClipboard from "react-copy-to-clipboard";
 
 export default function ShortenLinks() {
   const [border, setBorder] = useState("none");
@@ -28,19 +27,8 @@ export default function ShortenLinks() {
       return fetch(`https://api.shrtco.de/v2/shorten?url=${linkUrl}`)
         .then((response) => response.json())
         .then((data) => {
-          if (data.ok === true) {
+          if (data.ok === true && data.result.short_link2.length > 0) {
             setShortenedLink(data.result.short_link2);
-            const promise = databases.createDocument(
-              "6464bfecd9609282e188",
-              "64676a8e6f660788c078",
-              uuidV4(),
-              { link: [`https://${shortenedLink}`, linkUrl] }
-            );
-
-            promise.then(
-              (response) => console.log(response),
-              (err) => console.log(err)
-            );
           }
         })
         .finally(() => {
@@ -48,6 +36,27 @@ export default function ShortenLinks() {
         });
     }
   };
+
+  useEffect(() => {
+    if (shortenedLink !== "") {
+      const promise = databases.createDocument(
+        "6464bfecd9609282e188",
+        "64676a8e6f660788c078",
+        uuidV4(),
+        { link: [`https://${shortenedLink}`, linkUrl] }
+      );
+      promise.then(
+        (response) => {
+          setShortenedLink("");
+          setLinkUrl("");
+        },
+        (err) => {
+          setShortenedLink("");
+          setLinkUrl("");
+        }
+      );
+    }
+  }, [shortenedLink]);
 
   useEffect(() => {
     if (copied === true) {
@@ -68,18 +77,29 @@ export default function ShortenLinks() {
   return (
     <>
       <div className="shorten">
-        <input
-          style={{
-            border: `${border}`,
-            outline: `${outlet}`,
-            color: `${color}`,
-          }}
-          placeholder="Shorten a link here..."
-          type="text"
-          className="shorten-input"
-          value={linkUrl}
-          onChange={(e) => setLinkUrl(e.target.value)}
-        />
+        <div className="flex flex-col w-[75%]">
+          <input
+            style={{
+              border: `${border}`,
+              outline: `${outlet}`,
+              color: `${color}`,
+            }}
+            placeholder="Shorten a link here..."
+            type="text"
+            className="shorten-input"
+            value={linkUrl}
+            onChange={(e) => setLinkUrl(e.target.value)}
+          />
+          <p
+            className="error"
+            style={{
+              color: "hsl(0, 87%, 67%)",
+              fontStyle: "italic",
+            }}
+          >
+            {error}
+          </p>
+        </div>
         <button className="submit" onClick={handleSubmit}>
           Shorten It!
           <img
@@ -89,17 +109,6 @@ export default function ShortenLinks() {
             style={{ display: `${display}` }}
           />
         </button>
-        <p
-          className="error"
-          style={{
-            position: "absolute",
-            top: "105px",
-            color: "hsl(0, 87%, 67%)",
-            fontStyle: "italic",
-          }}
-        >
-          {error}
-        </p>
       </div>
       <div className="second-half-link-box"></div>
     </>

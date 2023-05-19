@@ -171,14 +171,15 @@
   padding: 50px;
   display: flex;
   gap: 3%;
-  position: relative;
 }
 .shorten-input {
   box-sizing: border-box;
-  width: 75%;
+  width: 100%;
   background-color: hsl(255, 100%, 99%);
   border-radius: 8px;
   padding-left: 15px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   font-family: "EB Garamond", serif;
   font-family: "Outfit", sans-serif;
 }
