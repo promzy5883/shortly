@@ -65,9 +65,9 @@ export default function Profile() {
               <ProfileNavbar firstLetter={userDetails.name[0]} />
               <section
                 style={{ gridTemplateColumns: "43% 57%" }}
-                className="grid justify-between w-full pb-[30px] max-[870px]:pb-4 max-[870px]:flex-col max-[870px]:flex"
+                className="grid justify-between w-full pb-[30px] max-[870px]:pb-4 max-[870px]:flex-col-reverse max-[870px]:flex"
               >
-                <div className="pt-[70px]">
+                <div className="pt-[70px] max-[870px]:pt-4 max-[870px]:translate-y-16">
                   <p
                     style={{
                       fontFamily: "'EB Garamond', serif",
