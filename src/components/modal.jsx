@@ -1,6 +1,6 @@
 export default function Modal({ cancel, confirm, question, type }) {
   return (
-    <div className="absolute w-full h-screen bg-[rgba(0,0,0,0.1)] flex left-0 justify-center items-center">
+    <div className="fixed z-50 w-full h-screen bg-[rgba(0,0,0,0.1)] flex left-0 justify-center items-center">
       <div className="bg-[hsl(255,100%,99%)] w-60 h-36 rounded box-border py-4 px-4 flex flex-col justify-between">
         <p className="text-[15px] font-semibold text-[rgba(0,0,0,0.7)]">
           Are you sure <br /> {question}

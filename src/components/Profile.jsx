@@ -36,7 +36,7 @@ export default function Profile() {
   };
 
   return (
-    <main>
+    <main className="">
       {userDetails ? (
         <section className="w-full h-auto box-border pl-[150px] bg-[hsl(255,100%,99%)] max-[870px]:pl-5">
           {isLoading && <Loading />}
@@ -57,7 +57,7 @@ export default function Profile() {
             style={{ gridTemplateColumns: "43% 57%" }}
             className="grid justify-between w-full pb-[30px] max-[870px]:pb-4 max-[870px]:flex-col-reverse max-[870px]:flex"
           >
-            <div className="pt-[70px] max-[870px]:pt-4 max-[870px]:translate-y-16">
+            <div className="pt-[70px] z-20 max-[870px]:pt-4 max-[870px]:translate-y-16">
               <p
                 style={{
                   fontFamily: "'EB Garamond', serif",

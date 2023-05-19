@@ -33,12 +33,12 @@ export default function ProfileNavbar({
               boxShadow: "0 8px 24px rgba(140, 149, 159, 0.2)",
               minHeight: "140px",
             }}
-            className="absolute top-[30px] h-auto w-36 box-border bg-white border border-solid border-[rgba(0,0,0,0.1)] right-[2%] rounded "
+            className="absolute top-[30px]  pb-1 h-auto w-48 box-border bg-white border border-solid border-[rgba(0,0,0,0.1)] right-[2%] rounded "
           >
-            <p className="text-sm px-3 text-center pt-3 text-[hsla(257,27%,26%,0.9)] font-normal">
+            <p className="text-sm px-3  pt-3 text-[hsla(257,27%,26%,0.9)] font-normal">
               Signed in as
             </p>
-            <p className="text-[13px] text-center px-3 text-[hsla(257,27%,26%,0.9)] font-medium">
+            <p className="text-[13px]  px-3 text-[hsla(257,27%,26%,0.9)] font-medium">
               {userName}
             </p>
             <div className="w-full pt-5 flex flex-col">
@@ -47,7 +47,7 @@ export default function ProfileNavbar({
                   setClickedProfile(false);
                   clickedLinks();
                 }}
-                className="w-full border-none py-2  justify-center flex items-center font-semibold text-xs text-[hsla(257,27%,26%,0.9)] hover:bg-[rgba(0,0,0,0.3)]"
+                className="w-full border-none py-2 pl-3  flex items-center font-semibold text-xs text-[hsla(257,27%,26%,0.9)] hover:bg-[rgba(0,0,0,0.3)]"
               >
                 Your Links
               </button>
@@ -56,7 +56,7 @@ export default function ProfileNavbar({
                   setClickedProfile(false);
                   clickedSignOut();
                 }}
-                className="w-full border-none py-2  flex justify-center items-center font-semibold text-xs text-[hsla(257,27%,26%,0.9)] hover:bg-[rgba(0,0,0,0.3)]"
+                className="w-full border-none py-2 pl-3 flex  items-center font-semibold text-xs text-[hsla(257,27%,26%,0.9)] hover:bg-[rgba(0,0,0,0.3)]"
               >
                 SignOut
               </button>
