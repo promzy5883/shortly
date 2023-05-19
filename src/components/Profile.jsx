@@ -13,10 +13,17 @@ export default function Profile() {
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const getAccount = account.get();
     getAccount.then(
-      (response) => setUserDetails(response),
-      (error) => console.log(error)
+      (response) => {
+        setUserDetails(response);
+        setIsLoading(false);
+      },
+      (error) => {
+        setIsLoading(false);
+        console.log(error);
+      }
     );
   }, []);
 
@@ -37,9 +44,9 @@ export default function Profile() {
 
   return (
     <main className="">
+      {isLoading && <Loading />}
       {userDetails ? (
         <section className="w-full h-auto box-border pl-[150px] bg-[hsl(255,100%,99%)] max-[870px]:pl-5">
-          {isLoading && <Loading />}
           {modal && (
             <Modal
               cancel={() => setModal(false)}
