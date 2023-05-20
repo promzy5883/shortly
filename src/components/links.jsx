@@ -47,7 +47,6 @@ export default function ShortenLinks({ email }) {
       "64691f765377caeffacb",
       id
     );
-    setModal(false);
     promise.then(
       (response) => {
         updateLinks();
