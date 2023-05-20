@@ -3,6 +3,9 @@
   margin: 0;
   padding: 0;
 }
+#viewLinks::-webkit-scrollbar {
+  display: none;
+}
 .App {
   width: 100%;
 }
@@ -161,53 +164,7 @@
   width: 100%;
   transform: translateY(-50px);
 }
-.shorten {
-  width: calc(100% - 150px);
-  height: 150px;
-  border-radius: 8px;
-  background-image: url(/images/bg-shorten-desktop.svg);
-  background-color: hsl(257, 27%, 26%);
-  box-sizing: border-box;
-  padding: 50px;
-  display: flex;
-  gap: 3%;
-}
-.shorten-input {
-  box-sizing: border-box;
-  width: 100%;
-  background-color: hsl(255, 100%, 99%);
-  border-radius: 8px;
-  padding-left: 15px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  font-family: "EB Garamond", serif;
-  font-family: "Outfit", sans-serif;
-}
-.submit {
-  height: 50px;
-  line-height: 50px;
-  width: 22%;
-  cursor: pointer;
-  border: none;
-  font-family: "EB Garamond", serif;
-  font-family: "Outfit", sans-serif;
-  font-weight: 600;
-  color: hsl(0, 0%, 90%);
-  background-color: hsl(180, 66%, 49%);
-  font-size: 18px;
-  border-radius: 8px;
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  overflow: hidden;
-}
-.spinner {
-  width: 20px;
-  transform: translateY(14px);
-}
-.submit:hover {
-  background-color: hsla(180, 66%, 49%, 0.6);
-}
+
 .your-links {
   background-color: hsl(255, 100%, 99%);
   padding: 12px;

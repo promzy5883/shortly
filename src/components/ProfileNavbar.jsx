@@ -22,7 +22,7 @@ export default function ProfileNavbar({
   const [clickedProfile, setClickedProfile] = useState(false);
 
   return (
-    <nav className="w-full flex pr-[150px] py-[30px] justify-between items-center max-[870px]:pr-5">
+    <nav className="w-full flex py-[30px] justify-between items-center max-[870px]:pr-5">
       <div className="">
         <h1 className="logo">Shortly</h1>
       </div>

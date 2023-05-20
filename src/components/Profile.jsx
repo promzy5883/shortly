@@ -5,7 +5,6 @@ import ProfileNavbar from "./ProfileNavbar";
 import ShortenLinks from "./links";
 import Loading from "./loadingComponent";
 import Modal from "./modal";
-import UserLinks from "./userLinks";
 
 export default function Profile() {
   const [isLoading, setIsLoading] = useState(false);
@@ -47,7 +46,7 @@ export default function Profile() {
     <main className="">
       {isLoading && <Loading />}
       {userDetails ? (
-        <section className="w-full pb-8 h-screen box-border pl-[150px] bg-[hsl(255,100%,99%)] max-[870px]:pl-5">
+        <section className="w-full pb-8 h-screen box-border px-[150px] max-[850px]:px-[20px] max-[1000px]:px-[40px] bg-[hsl(255,100%,99%)] max-[870px]:pl-5">
           {modal && (
             <Modal
               cancel={() => setModal(false)}
@@ -62,10 +61,7 @@ export default function Profile() {
             clickedSignOut={() => setModal(true)}
           />
           <section className="w-full h-auto">
-            <ShortenLinks />
-          </section>
-          <section className="w-full pt-7">
-            <UserLinks />
+            <ShortenLinks email={userDetails.email} />
           </section>
         </section>
       ) : (
