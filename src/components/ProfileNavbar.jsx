@@ -23,7 +23,12 @@ export default function ProfileNavbar({
   return (
     <nav className="w-full flex py-[30px] max-[800px]:pt-[10px] justify-between items-center">
       <div className="">
-        <h1 className="logo">Shortly</h1>
+        <h1
+          style={{ textShadow: "1px 0px 1px hsl(255, 31%, 20%)" }}
+          className="text-[30px] font-bold text-[hsl(255,31%,20%)] leading-[1px] cursor-pointer max-[700px]:text-[25px]"
+        >
+          Shortly
+        </h1>
       </div>
       <div className="self-center relative">
         {clickedProfile && (
