@@ -11,6 +11,20 @@ export default function NavBar() {
   const [menuButtonThirdOpacity, setmenuButtonThirdOpacity] = useState(1);
   const [navLinksPosition, setNavLinksPosition] = useState("-1000px");
 
+  const toggleMenu = () => {
+    if (menuButtonThirdOpacity === 1) {
+      setmenuButtonThirdOpacity(0);
+      setmenuButtonFirstTransform("rotate(-45deg) translateY(8px)");
+      setmenuButtonSecondTransform("rotate(45deg) translateY(-8px)");
+      setNavLinksPosition("80px");
+    } else {
+      setmenuButtonThirdOpacity(1);
+      setmenuButtonFirstTransform("rotate(0deg) translateY(0px)");
+      setmenuButtonSecondTransform("rotate(0deg) translateY(0px)");
+      setNavLinksPosition("-1000px");
+    }
+  };
+
   return (
     <nav className="nav w-[calc(100%-150px)] h-[80px] items-center flex justify-between max-[1100px]:w-[calc(100%-80px)] max-[996px]:w-[calc(100%-40px)] max-[870px]:w-full max-[870px]:px-5">
       <div className="w-full grid grid-cols-logoSection items-center">
@@ -41,19 +55,7 @@ export default function NavBar() {
       </div>
 
       <div
-        onClick={() => {
-          if (menuButtonThirdOpacity === 1) {
-            setmenuButtonThirdOpacity(0);
-            setmenuButtonFirstTransform("rotate(-45deg) translateY(8px)");
-            setmenuButtonSecondTransform("rotate(45deg) translateY(-8px)");
-            setNavLinksPosition("80px");
-          } else {
-            setmenuButtonThirdOpacity(1);
-            setmenuButtonFirstTransform("rotate(0deg) translateY(0px)");
-            setmenuButtonSecondTransform("rotate(0deg) translateY(0px)");
-            setNavLinksPosition("-1000px");
-          }
-        }}
+        onClick={toggleMenu}
         className="w-[24px] h-[15px] self-center flex-col justify-between cursor-pointer hidden max-[700px]:flex"
       >
         <span

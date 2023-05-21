@@ -13,15 +13,41 @@ export default function SignUp() {
     email: "",
     password: "",
   });
-  const [nameBorder, setNameBorder] = useState("1px solid transparent");
-  const [emailBorder, setEmailBorder] = useState("1px solid transparent");
-  const [passwordBorder, setPasswordBorder] = useState("1px solid transparent");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+
+  const [styles, setStyles] = useState({
+    nameBorder: "1px solid transparent",
+    emailBorder: "1px solid transparent",
+    passwordBorder: "1px solid transparent",
+    errorMessage: "",
+    isLoading: false,
+  });
+
+  const toggle = {
+    nameBorder: (value) =>
+      setStyles((prev) => {
+        return { ...prev, nameBorder: value };
+      }),
+    emailBorder: (value) =>
+      setStyles((prev) => {
+        return { ...prev, emailBorder: value };
+      }),
+    passwordBorder: (value) =>
+      setStyles((prev) => {
+        return { ...prev, passwordBorder: value };
+      }),
+    errorMessage: (value) =>
+      setStyles((prev) => {
+        return { ...prev, errorMessage: value };
+      }),
+    loading: (value) =>
+      setStyles((prev) => {
+        return { ...prev, isLoading: value };
+      }),
+  };
 
   const createUser = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
+    toggle.loading(true);
 
     const promise = account.create(
       uuidV4(),
@@ -34,24 +60,24 @@ export default function SignUp() {
       (response) => {
         setTimeout(() => {
           navigate("/login");
-          setIsLoading(false);
+          toggle.loading(false);
         }, 2000);
       },
       (err) => {
         setTimeout(() => {
-          setIsLoading(false);
+          toggle.loading(false);
           if (user.name === "" || user.email === "" || user.password === "") {
-            user.email === "" && setEmailBorder("1px solid red");
-            user.password === "" && setPasswordBorder("1px solid red");
-            user.name === "" && setNameBorder("1px solid red");
-            setErrorMessage("Field cannot be blank");
+            user.email === "" && toggle.emailBorder("1px solid red");
+            user.password === "" && toggle.passwordBorder("1px solid red");
+            user.name === "" && toggle.nameBorder("1px solid red");
+            toggle.errorMessage("Field cannot be blank");
           } else if (
             err.message ===
             "A user with the same email already exists in your project."
           ) {
-            setErrorMessage("A user with the same email already exists.");
+            toggle.errorMessage("A user with the same email already exists.");
           } else {
-            setErrorMessage(err.message);
+            toggle.errorMessage(err.message);
           }
         }, 2000);
       }
@@ -59,20 +85,20 @@ export default function SignUp() {
   };
 
   useEffect(() => {
-    setEmailBorder("1px solid transparent");
+    toggle.emailBorder("1px solid transparent");
   }, [user.email]);
 
   useEffect(() => {
-    setNameBorder("1px solid transparent");
+    toggle.nameBorder("1px solid transparent");
   }, [user.name]);
 
   useEffect(() => {
-    setPasswordBorder("1px solid transparent");
+    toggle.passwordBorder("1px solid transparent");
   }, [user.password]);
 
   return (
     <main className="m-0 p-0 w-full bg-[hsl(255,100%,99%)] h-screen flex justify-center items-center max-[700px]:items-start max-[700px]:pt-6">
-      {isLoading && <Loading />}
+      {styles.isLoading && <Loading />}
       <div className="w-[1100px] h-auto flex justify-between max-[700px]:w-[90%] max-[700px]:flex-col max-[700px]:justify-start max-[700px]:items-center max-[700px]:gap-9">
         <img
           src="/images/illustration-working.svg"
@@ -106,7 +132,7 @@ export default function SignUp() {
                 })
               }
               style={{
-                border: nameBorder,
+                border: styles.nameBorder,
               }}
               className="w-full py-2 px-4 bg-[rgba(0,0,0,0.1)] outline-none mt-2 rounded-sm text-sm"
               required
@@ -126,7 +152,7 @@ export default function SignUp() {
                 })
               }
               style={{
-                border: emailBorder,
+                border: styles.emailBorder,
               }}
               className="w-full text-sm py-2 px-4 bg-[rgba(0,0,0,0.1)] outline-none mt-2 rounded-sm"
               required
@@ -146,14 +172,14 @@ export default function SignUp() {
                 })
               }
               style={{
-                border: passwordBorder,
+                border: styles.passwordBorder,
               }}
               className="w-full py-2 px-4 text-sm bg-[rgba(0,0,0,0.1)] outline-none mt-2 rounded-sm"
               required
             />
-            {errorMessage !== "" && (
+            {styles.errorMessage !== "" && (
               <p style={{ color: "red" }} className="pt-2 text-xs font-bold">
-                {errorMessage}
+                {styles.errorMessage}
               </p>
             )}
           </div>

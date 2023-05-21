@@ -11,7 +11,6 @@ export default function ShortenLinks({ email }) {
   const [linkUrl, setLinkUrl] = useState("");
   const [display, setDisplay] = useState("none");
   const [error, setError] = useState("");
-  const [copied, setCopied] = useState(false);
   const [shortenedLink, setShortenedLink] = useState("");
   const [links, setLinks] = useState();
   const [loading, setLoading] = useState(false);
@@ -115,13 +114,6 @@ export default function ShortenLinks({ email }) {
   }, [shortenedLink]);
 
   useEffect(() => {
-    if (copied === true) {
-      alert("Copied!");
-      setCopied(false);
-    }
-  }, [copied]);
-
-  useEffect(() => {
     if (linkUrl !== "") {
       setError("");
       setBorder("none");
@@ -185,13 +177,7 @@ export default function ShortenLinks({ email }) {
                       {item.link[2]}
                     </p>
                     <div className="flex gap-2 items-center">
-                      <p
-                        style={{
-                          fontFamily: "'EB Garamond', serif",
-                          fontFamily: "'Outfit', sans-serif",
-                        }}
-                        className=" text-sm text-[hsl(255,100%,99%)] text-semibold pl-3 max-[700px]:pl-0"
-                      >
+                      <p className=" text-sm text-[hsl(255,100%,99%)] text-semibold pl-3 max-[700px]:pl-0">
                         https://{item.link[1]}
                       </p>
                       <CopyToClipboard

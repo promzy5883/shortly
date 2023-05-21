@@ -45,7 +45,8 @@
 .security a:nth-child(1):hover {
   color: hsl(257, 27%, 26%);
 }
-.security a:nth-child(2) {
+.security a:nth-child(2),
+.get-started {
   background-color: hsl(180, 66%, 49%);
   height: 35px;
   line-height: 35px;
@@ -56,7 +57,11 @@
   color: hsl(255, 100%, 99%);
   transition: 0.5s;
 }
-.security a:nth-child(2):hover {
+.get-started {
+  width: 120px;
+}
+.security a:nth-child(2):hover,
+.get-started:hover {
   background-color: hsla(180, 66%, 49%, 0.6);
 }
 .more {
@@ -84,25 +89,6 @@
   font-weight: 500;
   line-height: 25px;
   padding-bottom: 20px;
-}
-.get-started {
-  text-decoration: none;
-  background-color: hsl(180, 66%, 49%);
-  height: 35px;
-  line-height: 35px;
-  width: 120px;
-  text-align: center;
-  border-radius: 30px;
-  color: hsl(255, 100%, 99%);
-  transition: 0.5s;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-
-  letter-spacing: 1px;
-}
-.get-started:hover {
-  background-color: hsla(180, 66%, 49%, 0.6);
 }
 .img-box {
   height: 300px;

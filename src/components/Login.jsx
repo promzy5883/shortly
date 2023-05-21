@@ -11,44 +11,74 @@ export default function Login() {
     email: "",
     password: "",
   });
-  const [emailBorder, setEmailBorder] = useState("1px solid transparent");
-  const [passwordBorder, setPasswordBorder] = useState("1px solid transparent");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+
+  const [style, setStyle] = useState({
+    emailBorder: "1px solid transparent",
+    passwordBorder: "1px solid transparent",
+    errorMessage: "",
+    isLoading: false,
+  });
+
+  const togglingLoading = (value) => {
+    setStyle((previous) => {
+      return { ...previous, isLoading: value };
+    });
+  };
+
+  const togglingEmailBorder = (value) => {
+    setStyle((previous) => {
+      return { ...previous, emailBorder: value };
+    });
+  };
+
+  const togglingPasswordBorder = (value) => {
+    setStyle((previous) => {
+      return { ...previous, passwordBorder: value };
+    });
+  };
+
+  const togglingErrorMessage = (value) => {
+    setStyle((previous) => {
+      return { ...previous, errorMessage: value };
+    });
+  };
 
   const loginUser = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
+
+    togglingLoading(true);
+
     try {
       await account.createEmailSession(user.email, user.password);
       setTimeout(() => {
         navigate("/profile");
-        setIsLoading(false);
+        togglingLoading(false);
       }, 4000);
     } catch (err) {
-      setIsLoading(false);
+      togglingLoading(false);
       console.log(err);
+
       if (user.email === "" || user.password === "") {
-        user.email === "" && setEmailBorder("1px solid red");
-        user.password === "" && setPasswordBorder("1px solid red");
-        setErrorMessage("Field cannot be blank");
+        user.email === "" && togglingEmailBorder("1px solid red");
+        user.password === "" && togglingPasswordBorder("1px solid red");
+        togglingErrorMessage("Field cannot be blank");
       } else {
-        setErrorMessage(err.message);
+        togglingErrorMessage(err.message);
       }
     }
   };
 
   useEffect(() => {
-    setEmailBorder("1px solid transparent");
+    togglingEmailBorder("1px solid transparent");
   }, [user.email]);
 
   useEffect(() => {
-    setPasswordBorder("1px solid transparent");
+    togglingPasswordBorder("1px solid transparent");
   }, [user.password]);
 
   return (
     <main className="m-0 p-0 w-full bg-[hsl(255,100%,99%)] h-screen flex justify-center items-center max-[700px]:items-start max-[700px]:pt-6">
-      {isLoading && <Loading />}
+      {style.isLoading && <Loading />}
       <div className="w-[1100px] h-auto flex justify-between max-[700px]:w-[90%] max-[700px]:flex-col max-[700px]:justify-start max-[700px]:items-center max-[700px]:gap-9">
         <img
           src="/images/illustration-working.svg"
@@ -82,7 +112,7 @@ export default function Login() {
                 })
               }
               style={{
-                border: emailBorder,
+                border: style.emailBorder,
               }}
               className="w-full text-sm py-2 px-4 bg-[rgba(0,0,0,0.1)] outline-none mt-2 rounded-sm"
               required
@@ -102,14 +132,14 @@ export default function Login() {
                 })
               }
               style={{
-                border: passwordBorder,
+                border: style.passwordBorder,
               }}
               className="w-full py-2 px-4 text-sm bg-[rgba(0,0,0,0.1)] outline-none mt-2 rounded-sm"
               required
             />
-            {errorMessage !== "" && (
+            {style.errorMessage !== "" && (
               <p style={{ color: "red" }} className="pt-2 text-xs font-bold">
-                {errorMessage}
+                {style.errorMessage}
               </p>
             )}
           </div>
