@@ -2,19 +2,24 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function NavBar() {
-  let [menuButtonFirstTransform, setmenuButtonFirstTransform] = useState(
+  const [menuButtonFirstTransform, setmenuButtonFirstTransform] = useState(
     "rotate(0deg) translateY(0px)"
   );
-  let [menuButtonSecondTransform, setmenuButtonSecondTransform] = useState(
+  const [menuButtonSecondTransform, setmenuButtonSecondTransform] = useState(
     "rotate(0deg) translateY(0px)"
   );
-  let [menuButtonThirdOpacity, setmenuButtonThirdOpacity] = useState(1);
-  let [navLinksPosition, setNavLinksPosition] = useState("-1000px");
+  const [menuButtonThirdOpacity, setmenuButtonThirdOpacity] = useState(1);
+  const [navLinksPosition, setNavLinksPosition] = useState("-1000px");
 
   return (
-    <nav className="nav">
-      <div className="links">
-        <h1 className="logo">Shortly</h1>
+    <nav className="nav w-[calc(100%-150px)] h-[80px] items-center flex justify-between max-[1100px]:w-[calc(100%-80px)] max-[996px]:w-[calc(100%-40px)] max-[870px]:w-full max-[870px]:px-5">
+      <div className="w-full grid grid-cols-logoSection items-center">
+        <h1
+          style={{ textShadow: "1px 0px 1px hsl(255, 31%, 20%)" }}
+          className="text-[30px] font-bold text-[hsl(255,31%,20%)] leading-[1px] cursor-pointer max-[700px]:text-[25px]"
+        >
+          Shortly
+        </h1>
         <div className="nav-ul" style={{ top: `${navLinksPosition}` }}>
           <ul className="nav-ul-links">
             <li>
@@ -41,7 +46,7 @@ export default function NavBar() {
             setmenuButtonThirdOpacity(0);
             setmenuButtonFirstTransform("rotate(-45deg) translateY(8px)");
             setmenuButtonSecondTransform("rotate(45deg) translateY(-8px)");
-            setNavLinksPosition("65px");
+            setNavLinksPosition("80px");
           } else {
             setmenuButtonThirdOpacity(1);
             setmenuButtonFirstTransform("rotate(0deg) translateY(0px)");

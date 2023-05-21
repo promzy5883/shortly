@@ -3,13 +3,14 @@ import { useNavigate } from "react-router-dom";
 import NavBar from "./components/navBar";
 import Button from "./components/button";
 import Footer from "./components/Footer";
+
 export default function Landing() {
   const navigate = useNavigate();
 
   return (
     <>
-      <main className="App">
-        <section className="first-half">
+      <main className="w-full">
+        <section className="w-full h-[600px] bg-[hsl(255,100%,99%)] box-border pl-[150px] max-[1100px]:pl-[80px] max-[996px]:pl-[40px] max-[870px]:pl-5 max-[870px]:h-[800px] max-[700px]:h-[740px] max-[700px]:pl-0">
           <NavBar />
           <section className="more">
             <div className="paragraph" id="shorten">
@@ -33,7 +34,7 @@ export default function Landing() {
             </div>
           </section>
         </section>
-        <section className="second-half">
+        <section className=" max-[1100px]:pl-[80px] max-[996px]:pl-[40px] max-[870px]:pl-5 w-full bg-[hsl(0,0%,90%)] box-border pl-[150px] -z-20 pt-[50px] pb-[25px]">
           <div className="advanced_stats">
             <p className="stats_heading">Advanced Statistics</p>
             <p className="stats-paragraph">

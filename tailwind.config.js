@@ -6,6 +6,9 @@ export default {
       backgroundImage: {
         primaryDesktopOne: "url(/images/bg-shorten-desktop.svg)",
       },
+      gridTemplateColumns: {
+        logoSection: "13% 87%",
+      },
     },
   },
   plugins: [],

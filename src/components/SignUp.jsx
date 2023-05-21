@@ -87,8 +87,6 @@ export default function SignUp() {
           <p
             className="text-[25px] pb-2 font-bold text-[hsl(255,31%,20%)] leading-[1px]"
             style={{
-              fontFamily: "'EB Garamond', serif",
-              fontFamily: "'Outfit', sans-serif",
               textShadow: "1px 0px 1px hsl(255, 31%, 20%)",
             }}
           >
@@ -108,8 +106,6 @@ export default function SignUp() {
                 })
               }
               style={{
-                fontFamily: "'EB Garamond', serif",
-                fontFamily: "'Outfit', sans-serif",
                 border: nameBorder,
               }}
               className="w-full py-2 px-4 bg-[rgba(0,0,0,0.1)] outline-none mt-2 rounded-sm text-sm"
@@ -130,8 +126,6 @@ export default function SignUp() {
                 })
               }
               style={{
-                fontFamily: "'EB Garamond', serif",
-                fontFamily: "'Outfit', sans-serif",
                 border: emailBorder,
               }}
               className="w-full text-sm py-2 px-4 bg-[rgba(0,0,0,0.1)] outline-none mt-2 rounded-sm"
@@ -152,8 +146,6 @@ export default function SignUp() {
                 })
               }
               style={{
-                fontFamily: "'EB Garamond', serif",
-                fontFamily: "'Outfit', sans-serif",
                 border: passwordBorder,
               }}
               className="w-full py-2 px-4 text-sm bg-[rgba(0,0,0,0.1)] outline-none mt-2 rounded-sm"
@@ -168,10 +160,6 @@ export default function SignUp() {
           <div>
             <button
               onClick={createUser}
-              style={{
-                fontFamily: "'EB Garamond', serif",
-                fontFamily: "'Outfit', sans-serif",
-              }}
               type="submit"
               className="w-full text-[15px] text-white border-none rounded-sm py-[10px] flex justify-center font-semibold items-center bg-[hsl(180,66%,49%)] duration-500 hover:bg-[hsla(180,66%,49%,0.6)]"
             >

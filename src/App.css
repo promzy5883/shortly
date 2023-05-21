@@ -6,38 +6,7 @@
 #viewLinks::-webkit-scrollbar {
   display: none;
 }
-.App {
-  width: 100%;
-}
-.first-half {
-  width: 100%;
-  height: 600px;
-  background-color: hsl(255, 100%, 99%);
-  box-sizing: border-box;
-  padding-left: 150px;
-}
-.nav {
-  width: calc(100% - 150px);
-  padding-top: 30px;
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 30px;
-}
-.links {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 13% 87%;
-}
-.logo {
-  font-family: "EB Garamond", serif;
-  font-family: "Outfit", sans-serif;
-  font-size: 30px;
-  font-weight: bold;
-  color: hsl(255, 31%, 20%);
-  text-shadow: 1px 0px 1px hsl(255, 31%, 20%);
-  letter-spacing: 1px;
-  cursor: pointer;
-}
+
 .nav-ul {
   display: flex;
   justify-content: space-between;
@@ -50,8 +19,7 @@
 }
 .nav-ul-links a {
   text-decoration: none;
-  font-family: "EB Garamond", serif;
-  font-family: "Outfit", sans-serif;
+
   color: hsla(257, 27%, 26%, 0.6);
   font-size: 15px;
   transition: 0.5s;
@@ -66,8 +34,7 @@
 }
 .security a {
   text-decoration: none;
-  font-family: "EB Garamond", serif;
-  font-family: "Outfit", sans-serif;
+
   font-weight: 600;
   font-size: 15px;
   transition: 0.5s;
@@ -103,8 +70,6 @@
   padding-top: 70px;
 }
 .more-text {
-  font-family: "EB Garamond", serif;
-  font-family: "Outfit", sans-serif;
   font-weight: 700;
   font-size: 50px;
   color: hsl(260, 8%, 14%);
@@ -113,8 +78,6 @@
 }
 .sub-paragraph,
 .stats-paragraph {
-  font-family: "EB Garamond", serif;
-  font-family: "Outfit", sans-serif;
   color: hsla(257, 27%, 26%, 0.6);
   font-size: 16px;
   transition: 0.5s;
@@ -135,8 +98,7 @@
   border: none;
   cursor: pointer;
   font-weight: 600;
-  font-family: "EB Garamond", serif;
-  font-family: "Outfit", sans-serif;
+
   letter-spacing: 1px;
 }
 .get-started:hover {
@@ -148,15 +110,7 @@
 .img-box img {
   width: 100%;
 }
-.second-half {
-  width: 100%;
-  background-color: hsl(0, 0%, 90%);
-  box-sizing: border-box;
-  padding-left: 150px;
-  z-index: -2;
-  padding-top: 50px;
-  padding-bottom: 25px;
-}
+
 .second-half-link-box {
   display: flex;
   flex-direction: column;
@@ -178,8 +132,6 @@
 .original-link {
   width: 75%;
   font-size: 14px;
-  font-family: "EB Garamond", serif;
-  font-family: "Outfit", sans-serif;
 }
 .copy-link {
   display: flex;
@@ -188,16 +140,14 @@
 .short-link {
   text-decoration: none;
   color: hsl(180, 66%, 49%);
-  font-family: "EB Garamond", serif;
-  font-family: "Outfit", sans-serif;
+
   align-self: center;
 }
 .copy-btn {
   padding: 5px 10px 5px 10px;
   border: none;
   outline: none;
-  font-family: "EB Garamond", serif;
-  font-family: "Outfit", sans-serif;
+
   color: hsl(255, 100%, 99%);
   background-color: hsl(180, 66%, 49%);
   cursor: pointer;
@@ -210,8 +160,6 @@
   width: calc(100% - 150px);
 }
 .stats_heading {
-  font-family: "EB Garamond", serif;
-  font-family: "Outfit", sans-serif;
   color: hsl(260, 8%, 14%);
   font-weight: 600;
   font-size: 30px;
@@ -256,15 +204,11 @@
   height: 85%;
 }
 .boxes-text {
-  font-family: "EB Garamond", serif;
-  font-family: "Outfit", sans-serif;
   color: hsl(257, 27%, 26%);
   font-weight: 700;
   padding-bottom: 15px;
 }
 .boxes-paragraph {
-  font-family: "EB Garamond", serif;
-  font-family: "Outfit", sans-serif;
   color: hsla(257, 27%, 26%, 0.6);
   font-size: 16px;
   transition: 0.5s;
@@ -299,8 +243,7 @@
 }
 .boost {
   color: hsl(255, 100%, 99%);
-  font-family: "EB Garamond", serif;
-  font-family: "Outfit", sans-serif;
+
   font-weight: 700;
   font-size: 30px;
   padding-bottom: 15px;
@@ -316,11 +259,6 @@
   color: hsl(257, 7%, 63%);
 }
 @media (max-width: 1100px) {
-  .first-half,
-  .second-half {
-    padding-left: 80px;
-  }
-  .nav,
   .your-links,
   .advanced_stats,
   .stats_box,
@@ -329,11 +267,6 @@
   }
 }
 @media (max-width: 996px) {
-  .first-half,
-  .second-half {
-    padding-left: 40px;
-  }
-  .nav,
   .your-links,
   .advanced_stats,
   .stats_box,
@@ -342,15 +275,6 @@
   }
 }
 @media (max-width: 870px) {
-  .nav {
-    width: calc(100% - 20px);
-    padding-top: 15px;
-    padding-bottom: 30px;
-  }
-  .first-half {
-    padding-left: 20px;
-    height: 800px;
-  }
   .nav-ul {
     flex-direction: column;
     gap: 10px;
@@ -367,9 +291,7 @@
     gap: 20px;
     align-items: center;
   }
-  .second-half {
-    padding-left: 20px;
-  }
+
   .shorten-input {
     box-sizing: border-box;
     width: 100%;
@@ -456,18 +378,6 @@
 }
 
 @media (max-width: 700px) {
-  .nav {
-    width: calc(100% - 20px);
-    padding-top: 15px;
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 30px;
-    padding-left: 20px;
-  }
-  .first-half {
-    padding-left: 0px;
-    height: 740px;
-  }
   .menu-button {
     display: block;
   }
@@ -558,9 +468,6 @@
     flex-direction: column;
     gap: 20px;
     align-items: normal;
-  }
-  .second-half {
-    padding-left: 20px;
   }
   .shorten-input {
     box-sizing: border-box;

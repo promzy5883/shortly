@@ -27,13 +27,7 @@ export default function Footer() {
     <footer className="w-full box-border py-[65px] px-[150px] flex flex-col justify-between bg-[hsl(260,8%,14%)] max-[870px]:py-[50px] max-[870px]:px-5 max-[870px]:gap-[30px]">
       <div className="w-full flex justify-between max-[700px]:box-border max-[700px]:px-5 max-[700px]:pb-[30px] max-[700px]:flex-col max-[700px]:items-center max-[700px]:gap-[30px]">
         <div className="w-1/4">
-          <p
-            style={{
-              fontFamily: "'EB Garamond', serif",
-              fontFamily: "'Outfit', sans-serif",
-            }}
-            className="font-bold text-[25px] text-[hsl(255,100%,99%)] max-[700px]:text-center"
-          >
+          <p className="font-bold text-[25px] text-[hsl(255,100%,99%)] max-[700px]:text-center">
             Shortly
           </p>
         </div>
@@ -47,20 +41,12 @@ export default function Footer() {
                 key={item.header}
                 className="flex flex-col gap-3 max-[700px]:items-center max-[700px]:justify-center"
               >
-                <p
-                  style={{
-                    fontFamily: "'EB Garamond', serif",
-                    fontFamily: "'Outfit', sans-serif",
-                  }}
-                  className="text-white font-semibold"
-                >
-                  {item.header}
-                </p>
+                <p className="text-white font-semibold">{item.header}</p>
                 <ul>
                   <li className="pb-1 list-none max-[700px]:pb-[6px] max-[700px]:text-center">
                     <Link
                       to={"#"}
-                      className="text-[13px] font-medium text-[hsla(255,100%,99%,0.6)] font-['EB Garamond', serif] font-['Outfit', sans-serif] duration-500 hover:text-[hsl(180,66%,49%)]"
+                      className="text-[13px] font-medium text-[hsla(255,100%,99%,0.6)] duration-500 hover:text-[hsl(180,66%,49%)]"
                     >
                       {item.linkOne}
                     </Link>
@@ -68,7 +54,7 @@ export default function Footer() {
                   <li className="pb-1 list-none max-[700px]:pb-[6px] max-[700px]:text-center">
                     <Link
                       to={"#"}
-                      className="text-[13px] font-medium text-[hsla(255,100%,99%,0.6)] font-['EB Garamond', serif] font-['Outfit', sans-serif] duration-500 hover:text-[hsl(180,66%,49%)]"
+                      className="text-[13px] font-medium text-[hsla(255,100%,99%,0.6)] duration-500 hover:text-[hsl(180,66%,49%)]"
                     >
                       {item.linkTwo}
                     </Link>

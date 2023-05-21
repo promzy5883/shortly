@@ -16,15 +16,24 @@ export default function ShortenLinks({ email }) {
   const [links, setLinks] = useState();
   const [loading, setLoading] = useState(false);
 
+  const handleError = (message) => {
+    setBorder("1px solid hsl(0, 87%, 67%)");
+    setOutlet("1px");
+    setColor("hsl(0, 87%, 67%)");
+    setError(message);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (linkUrl === "" || linkUrl.indexOf("https://") === -1) {
-      setBorder("1px solid hsl(0, 87%, 67%)");
-      setOutlet("1px");
-      setColor("hsl(0, 87%, 67%)");
-      linkUrl === "" && setError("Please add a link");
-      linkUrl.indexOf("https://") === -1 && setError("Enter a valid URL");
+    if (
+      linkUrl === "" ||
+      (linkUrl.trim().indexOf("https://") === 0 && linkUrl.length <= 8)
+    ) {
+      handleError("Add a link");
+      return;
+    } else if (linkUrl.trim().indexOf("https://") !== 0) {
+      handleError("Enter a valid URL");
       return;
     } else {
       setDisplay("block");
@@ -160,25 +169,19 @@ export default function ShortenLinks({ email }) {
         </button>
       </div>
       <section className="w-full pt-7">
-        <div className="bg-[hsl(257,27%,26%)] p-5  rounded w-full">
-          <div
-            id="viewLinks"
-            className="w-full h-[140px]  box-border flex gap-4 flex-col  overflow-y-scroll"
-          >
-            {links &&
-              links.map((item) => (
+        {links && links.length > 0 && (
+          <div className="bg-[hsl(257,27%,26%)] p-4  rounded w-full">
+            <div
+              id="viewLinks"
+              className="w-full h-auto max-h-[140px] max-[700px]:max-h-[170px]  box-border flex gap-4 flex-col  overflow-y-scroll"
+            >
+              {links.map((item) => (
                 <div
                   key={item.$id}
                   className="w-full flex h-[35px]  max-[800px]:h-[50px]  justify-between items-center"
                 >
                   <div className="w-[88%]  flex max-[700px]:flex-col max-[700px]:gap-[6px]">
-                    <p
-                      style={{
-                        fontFamily: "'EB Garamond', serif",
-                        fontFamily: "'Outfit', sans-serif",
-                      }}
-                      className=" text-sm text-[hsl(255,100%,99%)]  text-semibold pr-3 max-[700px]:pr-0 max-[700px]:border-none border-r border-solid border-[hsl(255,100%,99%)]"
-                    >
+                    <p className=" text-sm text-[hsl(255,100%,99%)]  text-semibold pr-3 max-[700px]:pr-0 max-[700px]:border-none border-r border-solid border-[hsl(255,100%,99%)]">
                       {item.link[2]}
                     </p>
                     <div className="flex gap-2 items-center">
@@ -215,8 +218,9 @@ export default function ShortenLinks({ email }) {
                   ></i>
                 </div>
               ))}
+            </div>
           </div>
-        </div>
+        )}
       </section>
     </>
   );
