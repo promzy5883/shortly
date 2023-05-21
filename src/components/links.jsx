@@ -67,9 +67,11 @@ export default function ShortenLinks({ email }) {
     promise.then(
       (response) => {
         setLinks(
-          response.documents.filter((v) => {
-            return v.link[0] === email;
-          })
+          response.documents
+            .filter((v) => {
+              return v.link[0] === email;
+            })
+            .reverse()
         );
         setLoading(false);
       },
@@ -158,60 +160,62 @@ export default function ShortenLinks({ email }) {
         </button>
       </div>
       <section className="w-full pt-7">
-        <div
-          id="viewLinks"
-          className="w-full h-[250px] box-border overflow-y-scroll flex flex-col-reverse gap-4"
-        >
-          {links &&
-            links.map((item) => (
-              <div
-                key={item.$id}
-                className="w-full flex h-[50px] justify-between items-center"
-              >
-                <div className="w-[88%] flex max-[700px]:flex-col max-[700px]:gap-[6px]">
-                  <p
-                    style={{
-                      fontFamily: "'EB Garamond', serif",
-                      fontFamily: "'Outfit', sans-serif",
-                    }}
-                    className=" text-sm text-[hsla(257,27%,26%,0.9)]  text-semibold pr-3 max-[700px]:pr-0 max-[700px]:border-none border-r border-solid border-[rgba(0,0,0,0.2)]"
-                  >
-                    {item.link[2]}
-                  </p>
-                  <div className="flex gap-2 items-center">
+        <div className="bg-[hsl(257,27%,26%)] p-5  rounded w-full">
+          <div
+            id="viewLinks"
+            className="w-full h-[140px]  box-border flex gap-4 flex-col  overflow-y-scroll"
+          >
+            {links &&
+              links.map((item) => (
+                <div
+                  key={item.$id}
+                  className="w-full flex h-[35px]  max-[800px]:h-[50px]  justify-between items-center"
+                >
+                  <div className="w-[88%]  flex max-[700px]:flex-col max-[700px]:gap-[6px]">
                     <p
                       style={{
                         fontFamily: "'EB Garamond', serif",
                         fontFamily: "'Outfit', sans-serif",
                       }}
-                      className=" text-sm text-[hsla(257,27%,26%,0.9)] text-semibold pl-3 max-[700px]:pl-0"
+                      className=" text-sm text-[hsl(255,100%,99%)]  text-semibold pr-3 max-[700px]:pr-0 max-[700px]:border-none border-r border-solid border-[hsl(255,100%,99%)]"
                     >
-                      https://{item.link[1]}
+                      {item.link[2]}
                     </p>
-                    <CopyToClipboard
-                      text={`https://${item.link[1]}`}
-                      onCopy={() => {
-                        const element = document.getElementById(item.$id);
-                        element.classList.replace("fa-copy", "fa-check");
+                    <div className="flex gap-2 items-center">
+                      <p
+                        style={{
+                          fontFamily: "'EB Garamond', serif",
+                          fontFamily: "'Outfit', sans-serif",
+                        }}
+                        className=" text-sm text-[hsl(255,100%,99%)] text-semibold pl-3 max-[700px]:pl-0"
+                      >
+                        https://{item.link[1]}
+                      </p>
+                      <CopyToClipboard
+                        text={`https://${item.link[1]}`}
+                        onCopy={() => {
+                          const element = document.getElementById(item.$id);
+                          element.classList.replace("fa-copy", "fa-check");
 
-                        setTimeout(() => {
-                          element.classList.replace("fa-check", "fa-copy");
-                        }, 700);
-                      }}
-                    >
-                      <i
-                        id={`${item.$id}`}
-                        className="fa-solid fa-copy cursor-pointer text-[13px] text-[hsla(257,27%,26%,0.8)]"
-                      ></i>
-                    </CopyToClipboard>
+                          setTimeout(() => {
+                            element.classList.replace("fa-check", "fa-copy");
+                          }, 700);
+                        }}
+                      >
+                        <i
+                          id={`${item.$id}`}
+                          className="fa-solid fa-copy cursor-pointer text-[13px] text-[hsl(255,100%,99%)]"
+                        ></i>
+                      </CopyToClipboard>
+                    </div>
                   </div>
+                  <i
+                    className="fa-solid fa-trash text-[13px] cursor-pointer text-[hsl(255,100%,99%)]"
+                    onClick={() => deleteDocument(item.$id)}
+                  ></i>
                 </div>
-                <i
-                  className="fa-solid fa-trash text-[13px] cursor-pointer text-[hsla(257,27%,26%,0.8)]"
-                  onClick={() => deleteDocument(item.$id)}
-                ></i>
-              </div>
-            ))}
+              ))}
+          </div>
         </div>
       </section>
     </>
