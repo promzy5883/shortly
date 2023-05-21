@@ -34,7 +34,7 @@ export default function ProfileNavbar({
             }}
             className="absolute top-[30px]  pb-1 h-auto w-48 box-border bg-white border border-solid border-[rgba(0,0,0,0.1)] right-[2%] rounded "
           >
-            <p className="text-sm pl-5 px-4  pt-3 text-[hsla(247,27%,26%,0.9)] font-normal">
+            <p className="text-sm px-4  pt-3 text-[hsla(247,27%,26%,0.9)] font-normal">
               Signed in as
             </p>
             <p className="text-[13px]  px-4 text-[hsla(257,27%,26%,0.9)] font-medium">
