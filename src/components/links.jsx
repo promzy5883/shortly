@@ -160,7 +160,7 @@ export default function ShortenLinks({ email }) {
       <section className="w-full pt-7">
         <div
           id="viewLinks"
-          className="w-full h-[250px] box-border overflow-y-scroll flex flex-col gap-4"
+          className="w-full h-[250px] box-border overflow-y-scroll flex flex-col-reverse gap-4"
         >
           {links &&
             links.map((item) => (
