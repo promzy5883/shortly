@@ -1,6 +1,5 @@
 import SignUp from "./components/SignUp";
 import Landing from "./landing";
-import { useEffect } from "react";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import { HashRouter, Routes, Route } from "react-router-dom";

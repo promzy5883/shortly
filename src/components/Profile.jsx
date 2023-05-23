@@ -22,7 +22,6 @@ export default function Profile() {
       },
       (error) => {
         dispatch({ type: "updateIsLoading", isLoadingValue: false });
-        console.log(error);
         dispatch({ type: "updateOpacity", opacityValue: 1 });
       }
     );
@@ -78,7 +77,7 @@ export default function Profile() {
             <p>Session Expired</p>
             <button
               onClick={() => navigate("/login")}
-              className="px-6 py-1 text-sm rounded bg-black border border-solid border-black text-white duration-500 hover:bg-transparent hover:text-black"
+              className="px-10 py-2 text-sm rounded bg-black border border-solid border-black text-white duration-500 hover:bg-transparent hover:text-black"
             >
               Login
             </button>
