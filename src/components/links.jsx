@@ -1,50 +1,50 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 import { databases } from "../appwrite/appwriteConfig";
 import { v4 as uuidV4 } from "uuid";
 import CopyToClipboard from "react-copy-to-clipboard";
 import Loading from "./loadingComponent";
+import { initialState, reducer } from "./hook";
 
 export default function ShortenLinks({ email }) {
-  const [border, setBorder] = useState("none");
-  const [outlet, setOutlet] = useState("none");
-  const [color, setColor] = useState("hsla(257, 27%, 26%, 0.6)");
-  const [linkUrl, setLinkUrl] = useState("");
-  const [display, setDisplay] = useState("none");
-  const [error, setError] = useState("");
-  const [shortenedLink, setShortenedLink] = useState("");
-  const [links, setLinks] = useState();
-  const [loading, setLoading] = useState(false);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleError = (message) => {
-    setBorder("1px solid hsl(0, 87%, 67%)");
-    setOutlet("1px");
-    setColor("hsl(0, 87%, 67%)");
-    setError(message);
+    dispatch({
+      type: "updateBorder",
+      borderValue: "1px solid hsl(0, 87%, 67%)",
+    });
+    dispatch({ type: "updateOutlet", outletValue: "1px" });
+    dispatch({ type: "updateColor", colorValue: "hsl(0, 87%, 67%)" });
+    dispatch({ type: "updateError", errorValue: message });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (
-      linkUrl === "" ||
-      (linkUrl.trim().indexOf("https://") === 0 && linkUrl.length <= 8)
+      state.linkUrl === "" ||
+      (state.linkUrl.trim().indexOf("https://") === 0 &&
+        state.linkUrl.length <= 8)
     ) {
       handleError("Add a link");
       return;
-    } else if (linkUrl.trim().indexOf("https://") !== 0) {
+    } else if (state.linkUrl.trim().indexOf("https://") !== 0) {
       handleError("Enter a valid URL");
       return;
     } else {
-      setDisplay("block");
-      return fetch(`https://api.shrtco.de/v2/shorten?url=${linkUrl}`)
+      dispatch({ type: "updateDisplay", displayValue: "block" });
+      return fetch(`https://api.shrtco.de/v2/shorten?url=${state.linkUrl}`)
         .then((response) => response.json())
         .then((data) => {
           if (data.ok === true && data.result.short_link2.length > 0) {
-            setShortenedLink(data.result.short_link2);
+            dispatch({
+              type: "updateShortenedLink",
+              shortenedLinkValue: data.result.short_link2,
+            });
           }
         })
         .finally(() => {
-          setDisplay("none");
+          dispatch({ type: "updateDisplay", displayValue: "none" });
         });
     }
   };
@@ -67,60 +67,79 @@ export default function ShortenLinks({ email }) {
   };
 
   const updateLinks = () => {
-    setLoading(true);
+    dispatch({ type: "updateLoading", loadingValue: true });
     const promise = databases.listDocuments(
       "6464bfecd9609282e188",
       "64691f765377caeffacb"
     );
     promise.then(
       (response) => {
-        setLinks(
-          response.documents
+        dispatch({
+          type: "updateLinks",
+          linksValue: response.documents
             .filter((v) => {
               return v.link[0] === email;
             })
-            .reverse()
-        );
-        setLoading(false);
+            .reverse(),
+        });
+        dispatch({ type: "updateLoading", loadingValue: false });
       },
       (err) => {
-        setLoading(false);
+        dispatch({ type: "updateLoading", loadingValue: false });
         console.log(err);
       }
     );
   };
 
   useEffect(() => {
-    if (shortenedLink !== "") {
+    if (state.shortenedLink !== "") {
       const promise = databases.createDocument(
         "6464bfecd9609282e188",
         "64691f765377caeffacb",
         uuidV4(),
-        { link: [email, shortenedLink, linkUrl] }
+        { link: [email, state.shortenedLink, state.linkUrl] }
       );
       promise.then(
         (response) => {
-          setShortenedLink("");
-          setLinkUrl("");
+          dispatch({
+            type: "updateShortenedLink",
+            shortenedLinkValue: "",
+          });
+          dispatch({
+            type: "updateLinkUrl",
+            linkUrlValue: "",
+          });
           updateLinks();
         },
         (err) => {
           console.log(err);
-          setShortenedLink("");
-          setLinkUrl("");
+          dispatch({
+            type: "updateShortenedLink",
+            shortenedLinkValue: "",
+          });
+          dispatch({
+            type: "updateLinkUrl",
+            linkUrlValue: "",
+          });
         }
       );
     }
-  }, [shortenedLink]);
+  }, [state.shortenedLink]);
 
   useEffect(() => {
-    if (linkUrl !== "") {
-      setError("");
-      setBorder("none");
-      setOutlet("none");
-      setColor("hsla(257, 27%, 26%, 0.6)");
+    if (state.linkUrl !== "") {
+      dispatch({
+        type: "updateBorder",
+        borderValue: "none",
+      });
+      dispatch({ type: "updateOutlet", outletValue: "none" });
+      dispatch({
+        type: "updateColor",
+        colorValue: "hsla(257, 27%, 26%, 0.6)",
+      });
+      dispatch({ type: "updateError", errorValue: "" });
     }
-  }, [linkUrl]);
+  }, [state.linkUrl]);
 
   useEffect(() => {
     updateLinks();
@@ -128,23 +147,25 @@ export default function ShortenLinks({ email }) {
 
   return (
     <>
-      {loading && <Loading />}
+      {state.loading && <Loading />}
       <div className="h-[150px] rounded flex items-center justify-between bg-primaryDesktopOne w-full bg-cover bg-[hsl(257,27%,26%)] px-6 max-[800px]:flex-col max-[800px]:px-4 max-[800px]:py-4 max-[800px]:justify-center max-[800px]:gap-5">
         <div className="w-[77%] flex flex-col gap-1 max-[800px]:w-full">
           <input
             style={{
-              border: `${border}`,
-              outline: `${outlet}`,
-              color: `${color}`,
+              border: `${state.border}`,
+              outline: `${state.outlet}`,
+              color: `${state.color}`,
             }}
             placeholder="Shorten a link here..."
             type="text"
             className="w-full py-[12px] px-4 rounded text-sm"
-            value={linkUrl}
-            onChange={(e) => setLinkUrl(e.target.value)}
+            value={state.linkUrl}
+            onChange={(e) =>
+              dispatch({ type: "updateLinkUrl", linkUrlValue: e.target.value })
+            }
           />
           <p className="absolute italic text-[hsl(0,87%,67%)] translate-y-12 max-[800px]:translate-y-11">
-            {error}
+            {state.error}
           </p>
         </div>
         <button
@@ -156,18 +177,18 @@ export default function ShortenLinks({ email }) {
             className="w-5"
             src="https://raw.githubusercontent.com/Codelessly/FlutterLoadingGIFs/master/packages/cupertino_activity_indicator_selective.gif"
             alt=""
-            style={{ display: `${display}` }}
+            style={{ display: `${state.display}` }}
           />
         </button>
       </div>
       <section className="w-full pt-7">
-        {links && links.length > 0 && (
+        {state.links && state.links.length > 0 && (
           <div className="bg-[hsl(257,27%,26%)] p-4  rounded w-full">
             <div
               id="viewLinks"
               className="w-full h-auto max-h-[140px] max-[700px]:max-h-[170px]  box-border flex gap-4 flex-col  overflow-y-scroll"
             >
-              {links.map((item) => (
+              {state.links.map((item) => (
                 <div
                   key={item.$id}
                   className="w-full flex h-[35px]  max-[800px]:h-[50px]  justify-between items-center"
