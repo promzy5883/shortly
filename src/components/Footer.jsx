@@ -1,26 +1,5 @@
 import { Link } from "react-router-dom";
-
-const links = [
-  {
-    header: "Features",
-    linkOne: "Link Shortening",
-    linkTwo: "Branded Links",
-    linkThree: "Analytics",
-  },
-  {
-    header: "Resources",
-    linkOne: "Blog",
-    linkTwo: "Developers",
-    linkThree: "Support",
-  },
-  {
-    header: "Company",
-    linkOne: "About",
-    linkTwo: "Our Team",
-    linkThree: "Careers",
-    linkFour: "Contact",
-  },
-];
+import { links } from "./data";
 
 export default function Footer() {
   return (
