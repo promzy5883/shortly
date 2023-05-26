@@ -1,2 +1,3 @@
-# Frontend Mentor - Shortly URL shortening API Challenge
+# URL Shortener
+Created with #React and #AppwriteCloud
 
